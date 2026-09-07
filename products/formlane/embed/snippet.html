@@ -1,0 +1,103 @@
+<!--
+  FormLane embed snippet
+  1. Replace YOUR_WORKER_URL with your Worker origin (no trailing slash).
+  2. Keep the honeypot input named "website" and hide it with CSS.
+  3. Ensure ALLOWED_ORIGINS on the Worker includes this page's origin.
+-->
+<style>
+  .formlane-form { max-width: 28rem; font-family: system-ui, sans-serif; }
+  .formlane-form label { display: block; margin: 0.75rem 0 0.25rem; font-weight: 600; }
+  .formlane-form input,
+  .formlane-form textarea {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font: inherit;
+    box-sizing: border-box;
+  }
+  .formlane-form button {
+    margin-top: 1rem;
+    padding: 0.65rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .formlane-form button:disabled { opacity: 0.6; cursor: wait; }
+  .formlane-hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+  .formlane-status { margin-top: 0.75rem; font-size: 0.95rem; }
+</style>
+
+<form class="formlane-form" id="formlane-form" novalidate>
+  <label for="fl-name">Name</label>
+  <input id="fl-name" name="name" type="text" required autocomplete="name" maxlength="200" />
+
+  <label for="fl-email">Email</label>
+  <input id="fl-email" name="email" type="email" required autocomplete="email" maxlength="320" />
+
+  <label for="fl-message">Message</label>
+  <textarea id="fl-message" name="message" rows="4" maxlength="5000"></textarea>
+
+  <div class="formlane-hp" aria-hidden="true">
+    <label for="fl-website">Website</label>
+    <input id="fl-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button type="submit">Send</button>
+  <p class="formlane-status" id="formlane-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+(function () {
+  var WORKER_URL = "YOUR_WORKER_URL";
+  var form = document.getElementById("formlane-form");
+  var statusEl = document.getElementById("formlane-status");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    statusEl.textContent = "Sending…";
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = true;
+
+    var data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      website: form.website.value
+    };
+
+    fetch(WORKER_URL.replace(/\/$/, "") + "/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { res: res, body: body };
+        });
+      })
+      .then(function (ref) {
+        var res = ref.res;
+        var body = ref.body;
+        if (res.ok && body && body.ok) {
+          statusEl.textContent = "Thanks — we got your message.";
+          form.reset();
+        } else {
+          var code = (body && body.error) || ("http_" + res.status);
+          statusEl.textContent = "Could not send (" + code + "). Try again later.";
+        }
+      })
+      .catch(function () {
+        statusEl.textContent = "Network error. Check the Worker URL and CORS settings.";
+      })
+      .finally(function () {
+        if (btn) btn.disabled = false;
+      });
+  });
+})();
+
+</script>

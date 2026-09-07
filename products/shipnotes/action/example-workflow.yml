@@ -1,0 +1,52 @@
+# Example: drop into .github/workflows/shipnotes.yml
+# Point `uses` at a path copy of this action after purchase, or a private mirror.
+
+name: ShipNotes
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      since:
+        description: Optional since date or revision
+        required: false
+        default: ""
+      tag:
+        description: Optional lower-bound tag
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # After purchase, vendor ShipNotes under .github/shipnotes/ (cli + action)
+      - name: Generate release notes
+        id: shipnotes
+        uses: ./.github/shipnotes/action
+        with:
+          outfile: CHANGELOG.md
+          since: ${{ github.event.inputs.since || '' }}
+          tag: ${{ github.event.inputs.tag || '' }}
+
+      - name: Commit changelog (optional)
+        run: |
+          git config user.name "shipnotes-bot"
+          git config user.email "shipnotes@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update changelog via ShipNotes"
+          # Push only on workflow_dispatch to the default branch; for tags prefer uploading
+          # the notes as a release asset instead of committing back to a detached tag.

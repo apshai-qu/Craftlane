@@ -1,0 +1,70 @@
+# RuleLane — Python Pack (v0.1.0)
+# Stack: modern Python 3.11+ · uv/poetry · FastAPI-oriented · typing · pytest
+# Purpose: actionable defaults for Cursor / agent coding sessions
+
+## Project defaults
+- Target Python 3.11+ unless the repo pins otherwise. Use modern syntax (`match`, `X | Y` unions, `tomllib`).
+- Prefer **uv** for new greenfield projects; respect **poetry** or **pip-tools** if already present — do not switch package managers mid-task.
+- Layout: `src/<package>/` for installable libs; flat `app/` is fine for single FastAPI services. Keep tests in `tests/` mirroring package paths.
+- Entry points: `pyproject.toml` scripts or `__main__.py`. Avoid ad-hoc `sys.path` hacks.
+- Pin dependencies in lockfiles (`uv.lock` / `poetry.lock`). Never commit `.venv/`.
+
+## Typing
+- Annotate all public functions and methods. Prefer precise types over `Any`.
+- Use `from __future__ import annotations` when it clarifies forward refs (optional on 3.11+).
+- Prefer `TypedDict` / Pydantic models / dataclasses for structured data — pick one style per layer and stay consistent.
+- For FastAPI: request/response bodies are Pydantic models; path/query params are annotated function args.
+- Run `mypy` or `pyright` when configured; do not weaken `pyproject` strictness to silence errors — fix the types.
+
+## Code style
+- Follow Ruff / Black-compatible formatting if the repo already configures them. Match existing line length.
+- Early returns; shallow nesting. Functions should do one job.
+- Name booleans as predicates (`is_active`, `has_access`). Avoid single-letter names outside comprehensions/math.
+- Prefer explicit imports over `from module import *`.
+- Log with `logging` (or structlog if present). No bare `print` in library/service code except CLI UX.
+
+## FastAPI / services
+- Split routers by domain (`api/routes/…`). Keep `main.py` thin: app factory, middleware, router includes.
+- Dependency injection via `Depends` for DB sessions, auth, settings.
+- Settings from environment via `pydantic-settings` (or equivalent). Fail fast on missing required config at startup.
+- Background work: prefer task queues for anything that can fail/retry; don't block request threads on long I/O without reason.
+- OpenAPI: set `response_model`, status codes, and summaries so generated docs stay honest.
+
+## Error handling
+- Raise domain-specific exceptions; map them to HTTP errors in exception handlers.
+- Never swallow exceptions with bare `except:`. Catch specific types; log context; re-raise or translate.
+- For external APIs: timeouts, retries with jitter on idempotent calls, and clear error surfaces to callers.
+
+## Security checklist (every PR / agent change)
+- [ ] Secrets only via env / secret manager — never hardcode tokens.
+- [ ] Validate and coerce all external input (Pydantic / validators).
+- [ ] AuthN/AuthZ on every protected route; check object ownership, not just "logged in".
+- [ ] SQL: use parameterized queries / ORM bind params — no f-string SQL.
+- [ ] Upload endpoints: size limits, content-type allowlists, stored outside web root when applicable.
+- [ ] CORS and cookie flags (`HttpOnly`, `Secure`, `SameSite`) set deliberately.
+- [ ] Do not log passwords, tokens, or full payment payloads.
+
+## Testing (pytest)
+- Name tests `test_<behavior>`. One assert theme per test when practical.
+- Use fixtures for DB/session/client; prefer function-scoped for isolation.
+- Mark slow/integration tests; keep unit tests free of network by default.
+- For FastAPI: `TestClient` or `httpx.AsyncClient` with dependency overrides for auth/DB.
+- Cover: happy path, validation failure, unauthorized, and one edge case for tricky logic.
+- Aim for meaningful coverage of domain logic — not 100% line vanity.
+
+## Common pitfalls — avoid these
+- Mutable default arguments (`def f(x=[])`).
+- Blocking the event loop with sync I/O inside `async def` (use threads or async drivers).
+- Mixing sync and async SQLAlchemy sessions carelessly.
+- Catching `Exception` and returning `200` with an error string.
+- Committing `.env` with real secrets.
+- Adding heavyweight frameworks when a stdlib module suffices.
+
+## When editing existing code
+- Match the project's formatter, import style, and error types.
+- Prefer small diffs; no mass reformatting.
+- Update type hints and tests in the same change as behavior.
+
+## Agent stop conditions
+- Ask before introducing a new major dependency (ORMs, web frameworks, task queues).
+- Ask if production DB migrations are required and no migration tool is configured.

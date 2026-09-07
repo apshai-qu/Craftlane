@@ -1,0 +1,63 @@
+name: ShipNotes
+description: Generate polished release notes / CHANGELOG sections from conventional commits
+author: Craftlane
+branding:
+  icon: file-text
+  color: blue
+
+inputs:
+  since:
+    description: Only commits after this date (YYYY-MM-DD) or revision
+    required: false
+    default: ""
+  tag:
+    description: Only commits after this tag (tag..HEAD). Leave empty to auto-detect previous tag on tag pushes.
+    required: false
+    default: ""
+  outfile:
+    description: Path to write markdown (relative to repo root). Use CHANGELOG.md to prepend a section.
+    required: false
+    default: "RELEASE_NOTES.md"
+  version:
+    description: Version label for the heading (defaults to tag name on tag pushes)
+    required: false
+    default: ""
+  working-directory:
+    description: Working directory for git + outfile
+    required: false
+    default: "."
+
+outputs:
+  notes-path:
+    description: Path to the generated notes file
+    value: ${{ steps.run.outputs.notes-path }}
+  notes:
+    description: Generated markdown (truncated if huge)
+    value: ${{ steps.run.outputs.notes }}
+
+runs:
+  using: composite
+  steps:
+    - name: Run ShipNotes
+      id: run
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        INPUT_SINCE: ${{ inputs.since }}
+        INPUT_TAG: ${{ inputs.tag }}
+        INPUT_OUTFILE: ${{ inputs.outfile }}
+        INPUT_VERSION: ${{ inputs.version }}
+        SHIPNOTES_VERSION: ${{ inputs.version }}
+      run: |
+        set -euo pipefail
+        ACTION_DIR="${{ github.action_path }}"
+        # When used from the zip, action/ sits next to cli/
+        CLI_BIN="$ACTION_DIR/../cli/bin/shipnotes.js"
+        if [[ ! -f "$CLI_BIN" ]]; then
+          CLI_BIN="$ACTION_DIR/../../cli/bin/shipnotes.js"
+        fi
+        if [[ ! -f "$CLI_BIN" ]]; then
+          echo "error: shipnotes CLI not found next to the action" >&2
+          exit 1
+        fi
+        node "$ACTION_DIR/run.js" "$CLI_BIN"

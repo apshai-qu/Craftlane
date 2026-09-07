@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Craftlane — indie digital products for developers. VS Code / Cursor plugins and digital tools, sold via Creem." />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="canonical" href="https://craftlane.app/" />
+  <title>Craftlane — Digital tools for developers</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">Craftlane</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#products">Products</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Indie digital products</p>
+        <h1>Tools that stay out of your way.</h1>
+        <p class="lede">
+          Craftlane builds focused digital tools and editor plugins for developers—
+          sold as straightforward downloads via Creem.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">See products</a>
+          <a class="btn btn-ghost" href="mailto:admin@craftlane.app">admin@craftlane.app</a>
+        </div>
+        <p class="hero-note">First product: <a href="/products/rulelane/">RuleLane Packs</a> — checkout soon via Creem.</p>
+      </div>
+    </section>
+
+    <section class="section" id="what">
+      <div class="container">
+        <h2>What we sell</h2>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Editor plugins</h3>
+            <p>Extensions for VS Code and Cursor that sharpen workflows without noise.</p>
+          </article>
+          <article class="card">
+            <h3>Digital tools</h3>
+            <p>Small, purposeful utilities you own—no subscription theater.</p>
+          </article>
+          <article class="card">
+            <h3>Instant downloads</h3>
+            <p>Checkout via Creem. You get the files. Simple licensing, clear terms.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured</h2>
+          <p class="muted">Three products ready with Creem checkout.</p>
+        </div>
+        <div class="grid-3">
+          <article class="product-card">
+            <span class="badge">Live · v0.1.0</span>
+            <h3>RuleLane Packs</h3>
+            <p>Cursor rules + AGENTS.md for Next.js, Python, and Go. $19 / pack or $49 for all three.</p>
+            <p class="muted small"><a href="/products/rulelane/">View product →</a></p>
+          </article>
+          <article class="product-card">
+            <span class="badge">New · v0.1.0</span>
+            <h3>FormLane Worker</h3>
+            <p>Spam-resistant contact forms on Cloudflare Workers. Deploy your own edge form. $29 lifetime.</p>
+            <p class="muted small"><a href="/products/formlane/">View product →</a></p>
+          </article>
+          <article class="product-card">
+            <span class="badge">New · v0.1.0</span>
+            <h3>ShipNotes</h3>
+            <p>CLI + GitHub Action that turns conventional commits into release notes. $19 lifetime.</p>
+            <p class="muted small"><a href="/products/shipnotes/">View product →</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container narrow">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>How do I buy?</summary>
+            <p>When a product launches, you’ll check out through Creem and receive a download link by email. No account required beyond what’s needed for payment and delivery.</p>
+          </details>
+          <details>
+            <summary>What platforms do you support?</summary>
+            <p>Editor plugins target VS Code and Cursor. Standalone tools will list supported OS and requirements on each product page.</p>
+          </details>
+          <details>
+            <summary>Refunds &amp; licensing?</summary>
+            <p>See our <a href="/terms.html">Terms</a>. Each product page will state license scope (e.g. personal / commercial seats). Contact us if something’s wrong with a purchase.</p>
+          </details>
+          <details>
+            <summary>Who’s behind Craftlane?</summary>
+            <p>An indie shop building digital products for developers. English-first for overseas buyers. Reach us at <a href="mailto:admin@craftlane.app">admin@craftlane.app</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <div class="container narrow center">
+        <h2>Get in touch</h2>
+        <p class="lede-sm">Product questions, partnerships, or “notify me when it launches.”</p>
+        <a class="btn btn-primary" href="mailto:admin@craftlane.app">admin@craftlane.app</a>
+        <p class="tiny muted" lang="zh-Hans">可选：中文也可写邮件 · English preferred</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="logo" href="/">Craftlane</a>
+        <p class="muted small">© <span id="y"></span> Craftlane. All rights reserved.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Legal">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:admin@craftlane.app">Contact</a>
+        <a href="https://craftlane.app">craftlane.app</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

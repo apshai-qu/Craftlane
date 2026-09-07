@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RuleLane Packs — curated Cursor rules and AGENTS.md packs for Next.js, Python, and Go. $19 per pack or $49 bundle." />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="canonical" href="https://craftlane.app/products/rulelane/" />
+  <title>RuleLane Packs — Craftlane</title>
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    .price-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 1.75rem;
+    }
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .price-card.featured {
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+    .price-card h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+    .price span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .price-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .price-card .btn {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+    .soon-note {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+    .steps li {
+      position: relative;
+      padding: 1rem 0 1rem 3rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pack-list {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 1.75rem;
+    }
+    .pack-list h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+    .pack-list p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .crumb {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .crumb a { color: var(--muted); }
+    .crumb a:hover { color: var(--text); }
+    code, .mono {
+      font-family: var(--mono);
+      font-size: 0.88em;
+    }
+    @media (max-width: 720px) {
+      .price-grid,
+      .pack-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">Craftlane</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:admin@craftlane.app">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="crumb"><a href="/">Craftlane</a> / RuleLane Packs</p>
+        <p class="eyebrow">v0.1.0 · Digital download</p>
+        <h1>RuleLane Packs</h1>
+        <p class="lede">
+          Curated Cursor rules and <span class="mono">AGENTS.md</span> guidance for Next.js, Python, and Go—
+          practical checklists agents follow, not fluffy prompt soup.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">See pricing</a>
+          <a class="btn btn-ghost" href="#inside">What’s inside</a>
+        </div>
+        <p class="hero-note">Checkout powered by Creem. Store may still be under review — if payment fails, try again after approval.</p>
+      </div>
+    </section>
+
+    <section class="section" id="inside">
+      <div class="container">
+        <h2>What’s inside each pack</h2>
+        <p class="muted" style="margin:0;max-width:40em">
+          Every pack ships <span class="mono">.cursorrules</span>, <span class="mono">AGENTS.md</span>, and a short install README.
+          Drop them at your project root and open the folder in Cursor.
+        </p>
+        <div class="pack-list">
+          <article class="card">
+            <h3>nextjs</h3>
+            <p>App Router defaults, Server vs Client boundaries, Tailwind habits, auth/security checklist, and common Next pitfalls to avoid.</p>
+          </article>
+          <article class="card">
+            <h3>python</h3>
+            <p>uv/poetry-friendly layout, FastAPI-oriented patterns, typing rules, pytest fixtures, and safe I/O defaults.</p>
+          </article>
+          <article class="card">
+            <h3>go</h3>
+            <p>Idiomatic <span class="mono">cmd/</span> + <span class="mono">internal/</span> layout, wrapped errors, context, table-driven tests, and service hardening.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Pricing</h2>
+          <p class="muted">One-time purchase. You own the files. Updates for this major line called out in the changelog.</p>
+        </div>
+        <div class="price-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <article class="price-card">
+            <span class="badge">Single · $19</span>
+            <h3>Next.js Pack</h3>
+            <p class="price">$19</p>
+            <ul>
+              <li>App Router · TypeScript · Tailwind</li>
+              <li>.cursorrules + AGENTS.md + README</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://www.creem.io/payment/prod_1PqfAu9LdgqEpUBsN1tSKn" target="_blank" rel="noopener">Buy Next.js</a>
+          </article>
+          <article class="price-card">
+            <span class="badge">Single · $19</span>
+            <h3>Python Pack</h3>
+            <p class="price">$19</p>
+            <ul>
+              <li>FastAPI-oriented · typing · pytest</li>
+              <li>.cursorrules + AGENTS.md + README</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://www.creem.io/payment/prod_x7Xla1RP8HORuXHOtvyAD" target="_blank" rel="noopener">Buy Python</a>
+          </article>
+          <article class="price-card">
+            <span class="badge">Single · $19</span>
+            <h3>Go Pack</h3>
+            <p class="price">$19</p>
+            <ul>
+              <li>Idiomatic services · errors · tests</li>
+              <li>.cursorrules + AGENTS.md + README</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://www.creem.io/payment/prod_4kz6f2go5UI9z8tbVAq1DH" target="_blank" rel="noopener">Buy Go</a>
+          </article>
+          <article class="price-card featured">
+            <span class="badge">Best value</span>
+            <h3>All packs bundle</h3>
+            <p class="price">$49 <span>/ all three</span></p>
+            <ul>
+              <li>nextjs + python + go</li>
+              <li>Single zip with per-pack folders</li>
+              <li>Personal &amp; commercial project use</li>
+            </ul>
+            <a class="btn btn-primary" href="https://www.creem.io/payment/prod_5X6Nbah3cajCVq0APseYwQ" target="_blank" rel="noopener">Buy all packs</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="install">
+      <div class="container narrow">
+        <h2>Install in Cursor</h2>
+        <ol class="steps">
+          <li>Buy a pack (or the bundle) via Creem checkout above. After payment, download the zip from the confirmation email or delivery page.</li>
+          <li>Unzip the download. Open the pack folder you need.</li>
+          <li>Copy <span class="mono">.cursorrules</span> and <span class="mono">AGENTS.md</span> into your project root (next to <span class="mono">package.json</span>, <span class="mono">pyproject.toml</span>, or <span class="mono">go.mod</span>).</li>
+          <li>Open the project in Cursor. Start an Agent/Chat session—the rules load with the workspace.</li>
+          <li>Optional: merge into existing rules or split into <span class="mono">.cursor/rules/</span> with path globs. Details are in each pack’s README.</li>
+        </ol>
+        <p class="muted small" style="margin-top:1.25rem">VS Code / Copilot: keep <span class="mono">AGENTS.md</span> at the root, or mirror bullets into <span class="mono">.github/copilot-instructions.md</span>.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq">
+      <div class="container narrow">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>How do I buy?</summary>
+            <p>Use the Buy buttons above (Creem handles payment and tax). If checkout is blocked while the store is under review, wait for Creem approval and try again. Questions: <a href="mailto:admin@craftlane.app">admin@craftlane.app</a>.</p>
+          </details>
+          <details>
+            <summary>What’s the license?</summary>
+            <p>After purchase you may use the pack files in personal and commercial projects. You may not resell or redistribute the pack contents as a competing rules product. See our <a href="/terms.html">Terms</a>.</p>
+          </details>
+          <details>
+            <summary>Will this overwrite my existing rules?</summary>
+            <p>Only if you replace your files. Prefer merging sections. Each README explains Cursor root rules vs <span class="mono">.cursor/rules/</span>.</p>
+          </details>
+          <details>
+            <summary>Do you offer refunds?</summary>
+            <p>Digital downloads: contact us if the zip is corrupted or the wrong pack was delivered. See <a href="/terms.html">Terms</a> for the full policy stub until counsel-reviewed text lands.</p>
+          </details>
+          <details>
+            <summary>Are the rules original?</summary>
+            <p>Yes. Written for Craftlane—actionable checklists and pitfalls, not scraped docs or copyrighted tutorials.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <div class="container narrow center">
+        <h2>Questions or early access</h2>
+        <p class="lede-sm">Tell us which pack you want first. We’ll reply when Creem checkout is ready.</p>
+        <a class="btn btn-primary" href="mailto:admin@craftlane.app?subject=RuleLane%20Packs">admin@craftlane.app</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="logo" href="/">Craftlane</a>
+        <p class="muted small">© <span id="y"></span> Craftlane. All rights reserved.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Legal">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:admin@craftlane.app">Contact</a>
+        <a href="https://craftlane.app">craftlane.app</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

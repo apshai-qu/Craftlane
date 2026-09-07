@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ShipNotes — CLI and GitHub Action that turns conventional commits into polished release notes. $19 lifetime." />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="canonical" href="https://craftlane.app/products/shipnotes/" />
+  <title>ShipNotes — Craftlane</title>
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+.price-grid{display:grid;gap:1rem;grid-template-columns:1fr;max-width:420px;margin-top:1.75rem}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.4rem;display:flex;flex-direction:column;gap:.75rem}
+.price-card.featured{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 20%,transparent)}
+.price-card h3{margin:0;font-size:1.15rem;letter-spacing:-.02em}
+.price{font-size:2rem;font-weight:700;letter-spacing:-.03em;margin:0}
+.price span{font-size:.95rem;font-weight:500;color:var(--muted)}
+.price-card ul{margin:0;padding-left:1.15rem;color:var(--muted);font-size:.95rem}
+.price-card .btn{margin-top:auto;align-self:flex-start}
+.steps{counter-reset:step;list-style:none;padding:0;margin:1.5rem 0 0}
+.steps li{position:relative;padding:1rem 0 1rem 3rem;border-bottom:1px solid var(--border);color:var(--muted)}
+.steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:1rem;width:1.75rem;height:1.75rem;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--mono);font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.feature-grid{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr);margin-top:1.75rem}
+.feature-grid h3{margin:0 0 .4rem;font-size:1.05rem}
+.feature-grid p{margin:0;color:var(--muted);font-size:.95rem}
+.crumb{font-size:.9rem;color:var(--muted);margin-bottom:1.25rem}
+.crumb a{color:var(--muted)}
+.crumb a:hover{color:var(--text)}
+code,.mono{font-family:var(--mono);font-size:.88em}
+pre.sample{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;overflow-x:auto;font-family:var(--mono);font-size:.82rem;line-height:1.45;color:var(--muted);margin:1.25rem 0 0}
+@media (max-width:720px){.feature-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">Craftlane</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/#products">Products</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:admin@craftlane.app">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="crumb"><a href="/">Craftlane</a> / ShipNotes</p>
+        <p class="eyebrow">v0.1.0 · CLI + GitHub Action</p>
+        <h1>ShipNotes</h1>
+        <p class="lede">Turn conventional commits into polished release notes and <span class="mono">CHANGELOG.md</span> sections—locally or in CI. No GPU, no API key, no busywork on release day.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://www.creem.io/payment/prod_2RiYOvTHjlvOFtOf1opGCZ" target="_blank" rel="noopener">Buy lifetime — $19</a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
+        </div>
+        <p class="hero-note">Checkout powered by Creem. Store may still be under review — if payment fails, try again after approval.</p>
+      </div>
+    </section>
+    <section class="section" id="how">
+      <div class="container">
+        <h2>What you get</h2>
+        <p class="muted" style="margin:0;max-width:40em">A zero-dependency Node CLI plus a composite GitHub Action. Point it at a tag or date range; get markdown ready for a GitHub Release or your changelog.</p>
+        <div class="feature-grid">
+          <article class="card"><h3>CLI</h3><p>Flags for <span class="mono">--since</span>, <span class="mono">--tag</span>, and <span class="mono">--outfile</span>. Pipe git log on stdin when you want full control.</p></article>
+          <article class="card"><h3>GitHub Action</h3><p>Runs on tag pushes or <span class="mono">workflow_dispatch</span>. Auto-detects the previous tag and writes notes you can commit or attach.</p></article>
+          <article class="card"><h3>Polished sections</h3><p>Groups Features, Fixes, Breaking changes, and more—scopes and short hashes included when present.</p></article>
+        </div>
+        <pre class="sample">## 1.2.0 — 2026-09-07
+
+### Features
+- **api:** add rate limit headers (`a1b2c3d`)
+
+### Fixes
+- handle empty stdin (`e4f5g6h`)
+
+### Breaking changes
+- drop Node 16 support (`i7j8k9l`)</pre>
+      </div>
+    </section>
+    <section class="section section-alt" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Pricing</h2>
+          <p class="muted">One-time purchase. You own the files. Updates for this major line called out in the changelog.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card featured">
+            <span class="badge">Lifetime</span>
+            <h3>ShipNotes</h3>
+            <p class="price">$19 <span>/ lifetime</span></p>
+            <ul>
+              <li>CLI + GitHub Action in one zip</li>
+              <li>Conventional Commits to markdown notes</li>
+              <li>Personal and commercial project use</li>
+            </ul>
+            <a class="btn btn-primary" href="https://www.creem.io/payment/prod_2RiYOvTHjlvOFtOf1opGCZ" target="_blank" rel="noopener">Buy with Creem</a>
+            <p class="muted small" style="margin:0">Placeholder checkout URL until the Creem product is live.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="install">
+      <div class="container narrow">
+        <h2>Install</h2>
+        <ol class="steps">
+          <li>Buy via Creem checkout above. Download <span class="mono">shipnotes-v0.1.0.zip</span> from the confirmation email or delivery page.</li>
+          <li>Unzip. Run <span class="mono">node cli/bin/shipnotes.js --help</span> (Node 18+).</li>
+          <li>For CI: copy <span class="mono">cli/</span> and <span class="mono">action/</span> into <span class="mono">.github/shipnotes/</span> and add a workflow (see the zip README).</li>
+          <li>On release day: <span class="mono">shipnotes --tag v1.0.0 --outfile CHANGELOG.md</span> or let the Action run on your <span class="mono">v*</span> tag push.</li>
+        </ol>
+      </div>
+    </section>
+    <section class="section section-alt" id="faq">
+      <div class="container narrow">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details><summary>How do I buy?</summary><p>Use the Buy button above (Creem handles payment and tax). If checkout is blocked while the store is under review, wait for Creem approval and try again. Questions: <a href="mailto:admin@craftlane.app">admin@craftlane.app</a>.</p></details>
+          <details><summary>What is the license?</summary><p>After purchase you may use ShipNotes in personal and commercial projects. You may not resell or redistribute it as a competing release-notes product. See our <a href="/terms.html">Terms</a>.</p></details>
+          <details><summary>Does it call the network?</summary><p>No. The CLI only reads git history (or stdin) and writes markdown. The Action runs on GitHub runners using the vendored CLI.</p></details>
+          <details><summary>Do I need conventional commits?</summary><p>They work best. Non-matching subjects land under Other so you still get a usable notes file.</p></details>
+          <details><summary>Do you offer refunds?</summary><p>Digital downloads: contact us if the zip is corrupted or delivery failed. See <a href="/terms.html">Terms</a>.</p></details>
+        </div>
+      </div>
+    </section>
+    <section class="section cta" id="contact">
+      <div class="container narrow center">
+        <h2>Questions</h2>
+        <p class="lede-sm">Need a sample workflow or a Creem invoice receipt? Email us.</p>
+        <a class="btn btn-primary" href="mailto:admin@craftlane.app?subject=ShipNotes">admin@craftlane.app</a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="logo" href="/">Craftlane</a>
+        <p class="muted small">© <span id="y"></span> Craftlane. All rights reserved.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Legal">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:admin@craftlane.app">Contact</a>
+        <a href="https://craftlane.app">craftlane.app</a>
+      </nav>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

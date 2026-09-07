@@ -1,0 +1,62 @@
+# RuleLane — Next.js Pack (v0.1.0)
+# Stack: Next.js App Router · TypeScript · Tailwind CSS
+# Purpose: actionable defaults for Cursor / agent coding sessions
+
+## Project defaults
+- Prefer App Router (`app/`) over Pages Router. Do not introduce `pages/` unless migrating legacy code.
+- TypeScript strict mode is assumed. Never add `@ts-ignore` without a one-line justification comment.
+- Prefer Server Components by default. Add `"use client"` only when you need browser APIs, event handlers, or client-only hooks.
+- Colocate route files: `page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx` as needed.
+- Keep shared UI in `components/`; domain logic in `lib/` or `server/`; types in `types/` or colocated `*.types.ts`.
+
+## Code style
+- Named exports for reusable modules; default export only for Next.js route files and pages that require it.
+- Prefer `const` + arrow functions for local helpers; named `function` for exported utilities that benefit from hoisting.
+- Use early returns over deep nesting. Cap cyclomatic complexity mentally: if a function needs comments to explain branches, split it.
+- Tailwind: utility classes in JSX. Extract a component when the same class string appears 3+ times. Avoid `@apply` except for tiny base resets.
+- No inline styles unless dynamically computed values cannot be expressed with Tailwind + CSS variables.
+- Imports: external → internal absolute (`@/`) → relative. No circular imports.
+
+## Data & server
+- Fetch data in Server Components or route handlers. Do not fetch in `useEffect` for initial page data.
+- Use `unstable_cache` / `cache` / `revalidate` intentionally. Document the revalidation strategy next to the fetch.
+- For mutations: Server Actions or Route Handlers. Validate all inputs with Zod (or equivalent) before touching the DB.
+- Never trust client-provided IDs for authorization — re-check ownership/session on the server.
+- Prefer streaming (`Suspense` + `loading.tsx`) over blocking the whole page for slow secondary data.
+
+## Forms & UX
+- Controlled forms only when you need live validation; otherwise prefer uncontrolled + Server Actions.
+- Always provide accessible labels, focus states, and error text tied with `aria-describedby`.
+- Optimistic UI is fine for low-risk toggles; confirm destructive actions.
+
+## Security checklist (every PR / agent change)
+- [ ] No secrets in client bundles (`NEXT_PUBLIC_` only for truly public values).
+- [ ] Escape / sanitize any HTML rendered with `dangerouslySetInnerHTML` (prefer not using it).
+- [ ] Auth checks on every protected Server Action and Route Handler.
+- [ ] CSRF: rely on Next.js Server Action origin checks; for custom APIs use same-site cookies + tokens as appropriate.
+- [ ] Rate-limit sensitive endpoints when adding public APIs.
+- [ ] Do not log PII or tokens.
+
+## Testing & quality
+- Prefer Playwright for critical user flows; Vitest/Jest for pure unit logic in `lib/`.
+- New Server Actions: add at least one happy-path and one auth-failure test when a harness exists.
+- Run `tsc --noEmit` and lint before considering a task done.
+- Do not leave `console.log` debug noise; use a small logger gated by `NODE_ENV` if needed.
+
+## Common pitfalls — avoid these
+- Shipping a Client Component tree that could have been a Server Component (bundle bloat).
+- Using `useSearchParams` without a Suspense boundary (static render break).
+- Putting env secrets in `NEXT_PUBLIC_*`.
+- Calling `cookies()` / `headers()` then wondering why the route is dynamic — do it knowingly.
+- Mixing App Router and Pages Router patterns in the same feature.
+- Ignoring `error.tsx` / `not-found.tsx` so users see opaque failures.
+- Over-fetching in nested layouts; lift shared data or use React `cache()`.
+
+## When editing existing code
+- Match the file's existing patterns first; only introduce new patterns when the task requires it.
+- Prefer small, reviewable diffs. Do not drive-by reformat unrelated files.
+- Update or add types when changing function signatures; do not widen to `any`.
+
+## Agent stop conditions
+- If requirements are ambiguous (auth model, data source, design system), ask before inventing a large architecture.
+- If a dependency is missing, propose adding it with rationale; do not silently add heavy frameworks.

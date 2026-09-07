@@ -1,0 +1,73 @@
+# RuleLane — Go Pack (v0.1.0)
+# Stack: idiomatic Go services · testing · error handling
+# Purpose: actionable defaults for Cursor / agent coding sessions
+
+## Project defaults
+- Module path from `go.mod`. Never invent a different module path in imports.
+- Layout for services: `cmd/<name>/main.go` for entrypoints; `internal/` for private packages; `pkg/` only for intentionally public libraries.
+- Keep `main` thin: wire config, logger, server; put logic in `internal/...`.
+- Go version: match `go.mod`. Do not bump the language version unless asked.
+- Run modules tidy only when deps actually change (`go mod tidy` as part of the task that adds/removes imports).
+
+## Code style
+- Follow `gofmt` / `goimports`. Agents must not hand-format whitespace differently.
+- Names: `MixedCaps` or `mixedCaps`; no underscores in Go identifiers (except test helpers like `TestFoo_Bar` when clarifying).
+- Interfaces are accepted where they are used (consumer-side), not prematurely declared on every concrete type.
+- Prefer small interfaces (1–3 methods). Accept `io.Reader` / `context.Context` at boundaries.
+- Context is the first parameter: `func Foo(ctx context.Context, ...)`.
+- Avoid stutter (`package user` + type `UserUser`). Package name should be a short noun.
+
+## Error handling
+- Return `error` as the last result. Do not panic for expected failure paths.
+- Wrap with `%w` when adding context: `fmt.Errorf("load config: %w", err)`.
+- Use `errors.Is` / `errors.As` for control flow; do not compare strings.
+- Sentinel errors in `var ErrX = errors.New(...)` when callers must branch.
+- Log or return — not both at every layer (log at the edge; return in libraries).
+- Defer `Cancel` / `Close` with error checks when the API returns an error from `Close`.
+
+## Concurrency
+- Goroutines must have clear lifetime and cancellation via `context`.
+- Prefer `errgroup` for coordinated parallel work with cancellation.
+- No naked shared mutable state without mutexes or channels; document ownership.
+- Never start a goroutine that can block forever without a shutdown path.
+
+## HTTP / services
+- Prefer `net/http` + thin router (stdlib ServeMux on recent Go, or the project's existing router).
+- All handlers: respect `r.Context()`, set timeouts on server and outbound clients.
+- Decode JSON into structs with sensible `json` tags; reject unknown critical fields when security-sensitive.
+- Auth middleware before business handlers; authorize resource access inside the service layer too.
+- Health endpoints (`/healthz`, `/readyz`) stay dependency-light.
+
+## Testing
+- Table-driven tests are the default for pure logic.
+- Use `t.Parallel()` only when safe (no shared mutable globals).
+- Prefer `net/http/httptest` for handlers; fake narrow interfaces for unit tests.
+- Race detector (`go test -race`) for packages that use concurrency.
+- Golden files only when stable; update deliberately.
+- Name tests after behavior: `TestParseConfig_InvalidPort`.
+
+## Security checklist (every PR / agent change)
+- [ ] No secrets in source; load from env or a secret manager.
+- [ ] TLS for external traffic in production configs.
+- [ ] Timeouts on every outbound HTTP/DB call.
+- [ ] Prepared statements / bound parameters for SQL.
+- [ ] Validate and bound untrusted input sizes.
+- [ ] Careful with `unsafe`, reflection, and `exec.Command` — justify or avoid.
+- [ ] Do not log tokens, passwords, or full authorization headers.
+
+## Common pitfalls — avoid these
+- Ignoring errors (`_ = do()`) without a comment explaining why.
+- Using `init()` for complex logic or hidden I/O.
+- Global mutable clients without synchronization.
+- Returning unexported error types that callers cannot match.
+- Huge `interface{}` / `any` bags instead of structs.
+- Copying `sync.Mutex` by value (pass pointers to structs that contain them).
+
+## When editing existing code
+- Match existing logging, metrics, and error types.
+- Small diffs; run tests for affected packages.
+- Do not reorganize the whole module tree unless asked.
+
+## Agent stop conditions
+- Ask before adding a new web framework or ORM.
+- Ask before changing public APIs in `pkg/` or released modules.
