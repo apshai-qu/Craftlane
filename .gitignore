@@ -2,3 +2,4 @@ products/*/dist/
 **/.dev.vars
 **/node_modules/
 .wrangler/
+dist/

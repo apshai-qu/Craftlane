@@ -1,6 +1,6 @@
 # Craftlane site
 
-Static landing page for [craftlane.app](https://craftlane.app) — indie digital products for developers (VS Code / Cursor plugins, tools, downloads via Creem).
+Static landing page for [craftlane.app](https://craftlane.app) — indie digital products for developers (VS Code / Cursor plugins, tools, digital downloads).
 
 No build step. Plain HTML + CSS (+ tiny year script).
 
@@ -42,7 +42,7 @@ No build command. Production branch / output directory = this folder (or `.`).
 ## After go-live checklist
 
 - [ ] Replace Privacy / Terms stubs with counsel-reviewed text before taking payments.
-- [ ] Wire real product cards + Creem checkout links (remove “Coming soon” placeholders).
+- [ ] Wire real product cards + checkout links.
 - [ ] Confirm `admin@craftlane.app` receives mail (or update the address).
 - [ ] Optional: add `favicon.ico` / Open Graph image when brand assets exist.
 

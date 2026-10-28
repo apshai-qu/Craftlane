@@ -11,4 +11,4 @@
 - Product sales page at `/products/rulelane/`.
 
 ### Notes
-- Checkout via Creem is pending; pricing shown on the product page ($19 / pack, $49 bundle).
+- Checkout link pending; pricing shown on the product page ($19 / pack, $49 bundle).

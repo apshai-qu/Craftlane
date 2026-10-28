@@ -12,4 +12,4 @@
 - Product sales page at `/products/formlane/`.
 
 ### Notes
-- Checkout via Creem is pending; price shown on the product page ($29 lifetime).
+- Checkout link pending; price shown on the product page ($29 lifetime).

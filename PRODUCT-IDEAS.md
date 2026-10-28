@@ -1,13 +1,13 @@
 # Craftlane Product Ideas
 
 **Brand:** Craftlane ([craftlane.app](https://craftlane.app)) — indie digital tools & editor plugins for developers  
-**Channel:** Creem (MoR, checkout, tax, license keys) → overseas buyers  
-**Ops model:** AI assistant builds & runs on a **CPU-only Linux box** (no GPU, **no inbound public IP**). Public surface = **static downloads** and/or **Cloudflare Pages/Workers** + Creem license keys. Human in China: **KYC / Creem registration only**.
+**Channel:** our checkout provider (MoR, checkout, tax, license keys) → overseas buyers  
+**Ops model:** AI assistant builds & runs on a **CPU-only Linux box** (no GPU, **no inbound public IP**). Public surface = **static downloads** and/or **Cloudflare Pages/Workers** + our checkout provider license keys. Human in China: **KYC / our checkout provider registration only**.
 
 **Delivery patterns (allowed):**
-- Static zip/tarball / VS Code VSIX on R2 or Pages (signed download URL after Creem purchase)
+- Static zip/tarball / VS Code VSIX on R2 or Pages (signed download URL after our checkout provider purchase)
 - Cloudflare Pages marketing + Worker APIs (egress-only from box; deploy via `wrangler`)
-- License activation/validate via Creem API (Worker or CLI phones home to Creem, not to the box)
+- License activation/validate via our checkout provider API (Worker or CLI phones home to our checkout provider, not to the box)
 
 ---
 
@@ -17,17 +17,17 @@
 | Field | Detail |
 | --- | --- |
 | **Pitch** | Curated `.cursorrules`, Claude Code skills, and agent prompt packs that actually ship production-ready defaults for Next.js, Python, and Go. |
-| **Deliverable** | Static zip + optional Pages catalog; Creem one-time license unlocks download. |
+| **Deliverable** | Static zip + optional Pages catalog; our checkout provider one-time license unlocks download. |
 | **Effort** | **S** |
 | **Price** | **$19** single pack / **$49** "All Packs" bundle |
 | **Why it sells** | Cursor/Claude Code users pay for better defaults; content is the product; competitors are noisy free gists. |
-| **Autonomy** | **Yes** — bot authors packs, versions zips, updates Pages, issues keys via Creem; human only for KYC. |
+| **Autonomy** | **Yes** — bot authors packs, versions zips, updates Pages, issues keys via our checkout provider; human only for KYC. |
 
 ### 2. DiffCommit
 | Field | Detail |
 | --- | --- |
 | **Pitch** | VS Code / Cursor extension that drafts conventional commit messages from the staged diff using local heuristics (no GPU, optional user-BYO API key). |
-| **Deliverable** | VSIX + marketplace/private download; Creem license key gates Pro features. |
+| **Deliverable** | VSIX + marketplace/private download; our checkout provider license key gates Pro features. |
 | **Effort** | **M** |
 | **Price** | **$29** lifetime (1–3 seats) |
 | **Why it sells** | Daily friction for every git user; clear before/after demo; indie pricing beats SaaS commit tools. |
@@ -61,7 +61,7 @@
 | **Effort** | **S** |
 | **Price** | **$29** lifetime (or **$5/mo** higher limits) |
 | **Why it sells** | Replaces Formspree/Basin for simple sites; developers prefer owning the Worker. |
-| **Autonomy** | **Yes** — bot ships template updates, validates at edge via Creem, no box inbound. |
+| **Autonomy** | **Yes** — bot ships template updates, validates at edge via our checkout provider, no box inbound. |
 
 ### 6. ShipNotes
 | Field | Detail |
@@ -96,7 +96,7 @@
 ### 9. CreemGate Kit
 | Field | Detail |
 | --- | --- |
-| **Pitch** | Complete starter: Cloudflare Pages + Worker gate + Creem checkout + signed object storage assets — the kit Craftlane itself uses. |
+| **Pitch** | Complete starter: Cloudflare Pages + Worker gate + our checkout provider checkout + signed object storage assets — the kit Craftlane itself uses. |
 | **Deliverable** | Private template repo + setup guide; one-time checkout. |
 | **Effort** | **M** |
 | **Price** | **$79** |
@@ -107,7 +107,7 @@
 | Field | Detail |
 | --- | --- |
 | **Pitch** | Browser tool on Pages with WASM: drop a lockfile, get an interactive dep graph, notice summary, and duplicate finder. |
-| **Deliverable** | Cloudflare Pages SPA; Pro unlock via Creem after checkout. |
+| **Deliverable** | Cloudflare Pages SPA; Pro unlock via our checkout provider after checkout. |
 | **Effort** | **L** |
 | **Price** | **$24** lifetime |
 | **Why it sells** | Visual what-am-I-shipping for audits; works in-browser. |
@@ -134,10 +134,10 @@
 
 ## Top 3 recommended for MVP (first week)
 
-Ranked for speed to first Creem sale, fit with craftlane.app positioning, CPU/no-inbound constraints, and bot-operable after KYC.
+Ranked for speed to first our checkout provider sale, fit with craftlane.app positioning, CPU/no-inbound constraints, and bot-operable after KYC.
 
 ### 1. RuleLane Packs — ship day 1–2
-- Smallest build: research + write packs + zip + Pages product page + Creem product.
+- Smallest build: research + write packs + zip + Pages product page + our checkout provider product.
 - Matches tools for developers / Cursor positioning already on the site.
 - Zero runtime infra risk; pure content + file delivery.
 - Upsell path: bundle then DiffCommit / SnipLane later.
@@ -145,7 +145,7 @@ Ranked for speed to first Creem sale, fit with craftlane.app positioning, CPU/no
 ### 2. FormLane Worker — ship day 2–4
 - Clear paid alternative to Formspree; demo embed on craftlane.app.
 - Entire public surface on Cloudflare; box only runs wrangler outbound.
-- Creem key to Worker API token is a reusable pattern for later products (EdgeOG, CreemGate).
+- our checkout provider key to Worker API token is a reusable pattern for later products (EdgeOG, CreemGate).
 
 ### 3. ShipNotes — ship day 3–5
 - Narrow CLI + one GitHub Action; easy GIF demo for social / Product Hunt.
@@ -158,10 +158,10 @@ Ranked for speed to first Creem sale, fit with craftlane.app positioning, CPU/no
 
 ## Operating notes for the bot
 
-1. **Human:** Creem KYC, Cloudflare account, domain DNS for craftlane.app.
-2. **Bot:** product code, wrangler deploys, R2/Pages assets, Creem product/price/key config via API, changelog, support macros.
+1. **Human:** our checkout provider KYC, Cloudflare account, domain DNS for craftlane.app.
+2. **Bot:** product code, wrangler deploys, R2/Pages assets, our checkout provider product/price/key config via API, changelog, support macros.
 3. **Never:** open inbound ports on the box; host buyer data on the box; call GPU APIs billed to Craftlane without caps; scrape copyrighted snippet corpora into packs.
-4. **Key flow:** Creem checkout to Worker webhook to issue file token or activate key; CLI/extension validates with Creem (not the Linux box).
+4. **Key flow:** our checkout provider checkout to Worker webhook to issue file token or activate key; CLI/extension validates with our checkout provider (not the Linux box).
 
 ---
 

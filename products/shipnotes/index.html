@@ -52,10 +52,10 @@ pre.sample{background:var(--surface);border:1px solid var(--border);border-radiu
         <h1>ShipNotes</h1>
         <p class="lede">Turn conventional commits into polished release notes and <span class="mono">CHANGELOG.md</span> sections—locally or in CI. No GPU, no API key, no busywork on release day.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://www.creem.io/payment/prod_2RiYOvTHjlvOFtOf1opGCZ" target="_blank" rel="noopener">Buy lifetime — $19</a>
+          <a class="btn btn-primary" href="mailto:admin@craftlane.app?subject=Purchase%20request" target="_blank" rel="noopener">Buy lifetime — $19</a>
           <a class="btn btn-ghost" href="#how">How it works</a>
         </div>
-        <p class="hero-note">Checkout powered by Creem. Store may still be under review — if payment fails, try again after approval.</p>
+        <p class="hero-note">Secure checkout links are being finalized. Email us to purchase in the meantime.</p>
       </div>
     </section>
     <section class="section" id="how">
@@ -95,8 +95,8 @@ pre.sample{background:var(--surface);border:1px solid var(--border);border-radiu
               <li>Conventional Commits to markdown notes</li>
               <li>Personal and commercial project use</li>
             </ul>
-            <a class="btn btn-primary" href="https://www.creem.io/payment/prod_2RiYOvTHjlvOFtOf1opGCZ" target="_blank" rel="noopener">Buy with Creem</a>
-            <p class="muted small" style="margin:0">Placeholder checkout URL until the Creem product is live.</p>
+            <a class="btn btn-primary" href="mailto:admin@craftlane.app?subject=Purchase%20request" target="_blank" rel="noopener">Email to buy</a>
+            <p class="muted small" style="margin:0">Checkout link coming soon — email us to buy now.</p>
           </article>
         </div>
       </div>
@@ -105,7 +105,7 @@ pre.sample{background:var(--surface);border:1px solid var(--border);border-radiu
       <div class="container narrow">
         <h2>Install</h2>
         <ol class="steps">
-          <li>Buy via Creem checkout above. Download <span class="mono">shipnotes-v0.1.0.zip</span> from the confirmation email or delivery page.</li>
+          <li>Purchase via the Buy button or email below. Download <span class="mono">shipnotes-v0.1.0.zip</span> from the confirmation email or delivery page.</li>
           <li>Unzip. Run <span class="mono">node cli/bin/shipnotes.js --help</span> (Node 18+).</li>
           <li>For CI: copy <span class="mono">cli/</span> and <span class="mono">action/</span> into <span class="mono">.github/shipnotes/</span> and add a workflow (see the zip README).</li>
           <li>On release day: <span class="mono">shipnotes --tag v1.0.0 --outfile CHANGELOG.md</span> or let the Action run on your <span class="mono">v*</span> tag push.</li>
@@ -116,7 +116,7 @@ pre.sample{background:var(--surface);border:1px solid var(--border);border-radiu
       <div class="container narrow">
         <h2>FAQ</h2>
         <div class="faq">
-          <details><summary>How do I buy?</summary><p>Use the Buy button above (Creem handles payment and tax). If checkout is blocked while the store is under review, wait for Creem approval and try again. Questions: <a href="mailto:admin@craftlane.app">admin@craftlane.app</a>.</p></details>
+          <details><summary>How do I buy?</summary><p>Use the Buy button or email us. Payment and tax are handled by our checkout provider. Questions: <a href="mailto:admin@craftlane.app">admin@craftlane.app</a>.</p></details>
           <details><summary>What is the license?</summary><p>After purchase you may use ShipNotes in personal and commercial projects. You may not resell or redistribute it as a competing release-notes product. See our <a href="/terms.html">Terms</a>.</p></details>
           <details><summary>Does it call the network?</summary><p>No. The CLI only reads git history (or stdin) and writes markdown. The Action runs on GitHub runners using the vendored CLI.</p></details>
           <details><summary>Do I need conventional commits?</summary><p>They work best. Non-matching subjects land under Other so you still get a usable notes file.</p></details>
@@ -127,7 +127,7 @@ pre.sample{background:var(--surface);border:1px solid var(--border);border-radiu
     <section class="section cta" id="contact">
       <div class="container narrow center">
         <h2>Questions</h2>
-        <p class="lede-sm">Need a sample workflow or a Creem invoice receipt? Email us.</p>
+        <p class="lede-sm">Need a sample workflow or an invoice receipt? Email us.</p>
         <a class="btn btn-primary" href="mailto:admin@craftlane.app?subject=ShipNotes">admin@craftlane.app</a>
       </div>
     </section>
